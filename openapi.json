@@ -1,0 +1,6962 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Payment Api",
+    "description": "Payment Api allows you to submit and process payment instructions from various input channels",
+    "version": "0.1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/payment-api",
+      "description": "Generated server url"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/v1/recipient/{recipientId}/name": {
+      "put": {
+        "tags": [
+          "Recipient Api"
+        ],
+        "operationId": "editName",
+        "parameters": [
+          {
+            "name": "recipientId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "095e84e0-e1f4-450a-89a8-8f703e405a0e"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "18c916c3-748b-4bbb-83d2-6ceae1cda034"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipientResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recipient/{recipientId}/address": {
+      "put": {
+        "tags": [
+          "Recipient Api"
+        ],
+        "operationId": "editAddress",
+        "parameters": [
+          {
+            "name": "recipientId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "5b79e544-ec52-408b-81f9-456d224a4809"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "139cd850-912a-4bc4-b8e2-8ba828f78346"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressWithEmail"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipientResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/referencedata/payment-scheme/available": {
+      "post": {
+        "tags": [
+          "Reference Data Api"
+        ],
+        "operationId": "getAvailableScheme",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "4bf33656-8561-4bde-8d5a-a0adc7850b3c"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "69a572fd-e9ee-4544-83e5-cef057583e6e"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SchemeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentSchemeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recipient": {
+      "get": {
+        "tags": [
+          "Recipient Api"
+        ],
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "75aa9951-bb82-476c-9275-059d5c7e2de1"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "b49e152d-489f-4b1d-bf0a-06403e66bf0c"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseWrapperListRecipientDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Recipient Api"
+        ],
+        "operationId": "create",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "823f4d40-8193-4016-99f5-580b8df9cc84"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "9d4c4f1a-9299-45c9-84e3-9620c5f291ab"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecipientData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipientResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recipient/{id}/account": {
+      "post": {
+        "tags": [
+          "Recipient Api"
+        ],
+        "operationId": "addAccount",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2106f556-561c-40ff-8f9e-4bdcf475b727"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "d16ccda7-b13c-4621-b77c-b3a868134984"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/AccountNumberRef"
+                  },
+                  {
+                    "$ref": "#/components/schemas/IbanRef"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipientResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recipient/auth/confirm": {
+      "post": {
+        "tags": [
+          "Recipient Api"
+        ],
+        "operationId": "confirmAuthorization",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "452b1049-9578-4250-bc1e-30a6a43631b5"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "cc8d43b5-653d-470a-8ba1-c297bf5bd45d"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OperationRef"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipientAuthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/payment": {
+      "post": {
+        "tags": [
+          "Payment Api"
+        ],
+        "summary": "Process payment",
+        "description": "Send a payment to own account or to beneficiary",
+        "operationId": "performPayment",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "53416848-940b-46c7-b799-b2d7e6fcf979"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "0159c5fe-6717-453e-94b9-c592c1c8b9d4"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              },
+              "examples": {
+                "Internal transfer": {
+                  "description": "This request realize internal transfer that means both of the given accounts are assigned to one customer.",
+                  "value": {
+                    "senderAccountNumber": "BE54648610006797",
+                    "recipient": {
+                      "accountNumber": "BE73648532577660"
+                    },
+                    "amount": {
+                      "amount": 13.45,
+                      "currency": "EUR"
+                    },
+                    "title": "Example of internal transfer"
+                  }
+                },
+                "Local transfer": {
+                  "description": "This request realize local transfer that means both of the given accounts are assigned to different customer in our bank.",
+                  "value": {
+                    "senderAccountNumber": "BE54648610006797",
+                    "recipient": {
+                      "name": "Recipient Name",
+                      "accountNumber": "BE63648755022508"
+                    },
+                    "amount": {
+                      "amount": 5.43,
+                      "currency": "EUR"
+                    },
+                    "title": "Example of local transfer"
+                  }
+                },
+                "Simple external transfer": {
+                  "description": "This request realize external transfer that means the given recipient account number is assigned to another bank",
+                  "value": {
+                    "senderAccountNumber": "BE54648610006797",
+                    "recipient": {
+                      "name": "Recipient Name",
+                      "accountNumber": "BE79127196419553"
+                    },
+                    "amount": {
+                      "amount": 9.65,
+                      "currency": "EUR"
+                    },
+                    "title": "Example of simple external transfer"
+                  }
+                },
+                "Instant external transfer": {
+                  "description": "This request realize external transfer that means the given recipient account number is assigned to another bank",
+                  "value": {
+                    "senderAccountNumber": "BE54648610006797",
+                    "recipient": {
+                      "name": "Recipient Name",
+                      "accountNumber": "BE79127196419553"
+                    },
+                    "amount": {
+                      "amount": 9.65,
+                      "currency": "EUR"
+                    },
+                    "priority": "INSTANT",
+                    "title": "Example of simple external transfer"
+                  }
+                },
+                "External transfer with given recipient address in FULL type": {
+                  "description": "External transfer with given recipient address in FULL type",
+                  "value": {
+                    "senderAccountNumber": "BE54648610006797",
+                    "recipient": {
+                      "name": "Recipient Name",
+                      "accountNumber": "GB27BARC20038493642742",
+                      "address": {
+                        "type": "FULL",
+                        "country": "GB",
+                        "city": "LONDON",
+                        "street": "Downing Street",
+                        "streetNumber": "20",
+                        "apartment": "1",
+                        "postcode": "00-000"
+                      }
+                    },
+                    "amount": {
+                      "amount": 6.69,
+                      "currency": "GBP"
+                    },
+                    "title": "Example of external transfer with address"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Payment successfully booked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentResponse"
+                },
+                "example": {
+                  "referenceId": "532cedf7bad04821b0e1a20553548b42",
+                  "status": "BOOKED"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Payment validation failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentResponse"
+                },
+                "example": "{\n \"referenceId\": \"532cedf7bad04821b0e1a20553548b42\",\n \"status\": \"REJECTED\",\n \"errors\": [\"INSUFFICIENT_FUNDS\"],\n}"
+              }
+            }
+          },
+          "500": {
+            "description": "Payment processing failed",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/payment/confirm": {
+      "post": {
+        "tags": [
+          "Payment Api"
+        ],
+        "summary": "Confirm authorization for payment",
+        "operationId": "confirmPayment",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "c9b82662-aef6-4860-b707-7608739a9536"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "9987ebf6-8048-4bcd-93ca-a881dd0e74cd"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OperationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authorization successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentResponse"
+                },
+                "example": {
+                  "referenceId": "a27b5c3ddff14d1c81ce5cd5fb731c89",
+                  "status": "BOOKED"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Confirm authorization failed",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "Authorization verification failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentResponse"
+                },
+                "example": "{\n \"referenceId\": \"532cedf7bad04821b0e1a20553548b42\",\n \"status\": \"REJECTED\",\n \"errors\": [\"UNKNOWN_AUTHORIZATION_CONFIRM_ERROR\"],\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pain001/v10": {
+      "post": {
+        "tags": [
+          "SEPA PAIN Api"
+        ],
+        "operationId": "pain001v10",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "d2d3024e-4061-4269-af93-0bf0cd31a587"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "f2e72df5-c5f2-48d1-8d9f-810c0819f7b7"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pain001/v03": {
+      "post": {
+        "tags": [
+          "SEPA PAIN Api"
+        ],
+        "operationId": "pain001v03",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "fecffde4-34ac-4e45-a8ec-76a424027806"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "7f270727-6e26-49ce-8aa5-d1585157d6b4"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/order": {
+      "get": {
+        "tags": [
+          "Order Api"
+        ],
+        "operationId": "getOrders",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "e44afca0-5f18-406b-a6ff-397549e57f07"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "fe0e13e2-062a-4b1f-9919-2eb782a9599e"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseWrapperOrders"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Order Api"
+        ],
+        "summary": "Save orders",
+        "description": "Save standing order or deferred transfer definition",
+        "operationId": "savePeriodicPayment",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "c6188068-78e4-45fe-8b52-6f5c5666ac1e"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "6874eea5-6207-4ae7-8cd8-269106e26262"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Order correct saved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentResponse"
+                },
+                "example": {
+                  "referenceId": "532cedf7bad04821b0e1a20553548b42",
+                  "status": "ORDERED"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Order validation failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentResponse"
+                },
+                "example": "{\n \"referenceId\": \"532cedf7bad04821b0e1a20553548b42\",\n \"status\": \"REJECTED\",\n \"errors\": [\"RECIPIENT_NAME_REQUIRED\"],\n}"
+              }
+            }
+          },
+          "500": {
+            "description": "Order processing failed",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Order Api"
+        ],
+        "operationId": "removePeriodicPayment",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "55afbc69-3fee-4e22-b95b-966c4d218880"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "19b9ea03-43d0-4147-a170-c5952944b814"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OperationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/order/confirm": {
+      "post": {
+        "tags": [
+          "Order Api"
+        ],
+        "summary": "Confirm authorization for orders",
+        "operationId": "confirmPayment_1",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "b8138e6d-cad7-4810-83dc-5dcab577a320"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "f51c2f48-7fe3-4ccf-b7df-1e63907f4957"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OperationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "500": {
+            "description": "Confirm authorization failed",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "200": {
+            "description": "Authorization successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentResponse"
+                },
+                "example": {
+                  "referenceId": "a27b5c3ddff14d1c81ce5cd5fb731c89",
+                  "status": "ORDERED"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Authorization verification failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentResponse"
+                },
+                "example": "{\n \"referenceId\": \"532cedf7bad04821b0e1a20553548b42\",\n \"status\": \"REJECTED\",\n \"errors\": [\"UNKNOWN_AUTHORIZATION_CONFIRM_ERROR\"],\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/retry-instruction": {
+      "post": {
+        "tags": [
+          "Admin Api"
+        ],
+        "operationId": "retryInstruction",
+        "parameters": [
+          {
+            "name": "ref",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "740b2ebd-3f4e-484d-8469-a75ca096ccd5"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "80d46ae8-12d6-4411-a18a-e42dbaf02cea"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/referencedata/transactions": {
+      "get": {
+        "tags": [
+          "Reference Data Api"
+        ],
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "searchCriteria",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/SearchCriteria"
+            }
+          },
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "7411a025-3871-4e96-93e6-041795fbb7e6"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "8e683cab-8f94-4168-9045-a6cd3ec71e8f"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionHistoryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/referencedata/iban-structures": {
+      "get": {
+        "tags": [
+          "Reference Data Api"
+        ],
+        "operationId": "getAll",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2a68c92c-236f-4714-bafe-35f71741f5d3"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "e7ef98dd-48d1-4a96-887e-d641b7abb207"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IbanStructures"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/referencedata/iban-structures/{countryCode}": {
+      "get": {
+        "tags": [
+          "Reference Data Api"
+        ],
+        "operationId": "get_1",
+        "parameters": [
+          {
+            "name": "countryCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2a6cc573-850e-442b-bf2b-37093914110f"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "36855032-555f-4985-9633-a414f8b2b8d5"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IbanStructure"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/referencedata/accounts": {
+      "get": {
+        "tags": [
+          "Reference Data Api"
+        ],
+        "operationId": "getAllCustomerAccounts",
+        "parameters": [
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "a80f74c2-cda9-4966-9cd7-8fab14fcc661"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "6106dcf6-2c15-4506-b1f9-0a195bf718cf"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Accounts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recipient/{id}": {
+      "get": {
+        "tags": [
+          "Recipient Api"
+        ],
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2785a619-42f3-4057-8f37-b055ad725302"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "63072d70-ab7a-41a3-8577-2ddabda07ac2"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseWrapperRecipientDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Recipient Api"
+        ],
+        "operationId": "deleteById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Token",
+            "in": "header",
+            "description": "S2S Token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "Bearer X"
+            }
+          },
+          {
+            "name": "X-Payment-Source-System",
+            "in": "header",
+            "description": "Payment Source System",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "payment-application-name"
+            }
+          },
+          {
+            "name": "X-Channel",
+            "in": "header",
+            "description": "Payment instruction input channel",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "WEB",
+              "enum": [
+                "WEB",
+                "MOBILE",
+                "PSD2",
+                "API"
+              ]
+            }
+          },
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Request Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "9ffae7f0-a8fe-4381-b5c0-2636e4bfa5e9"
+            }
+          },
+          {
+            "name": "X-Mobile-AppId",
+            "in": "header",
+            "description": "Mobile AppId - required for channel MOBILE",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Customer-Id",
+            "in": "header",
+            "description": "CustomerId - required for channel API",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Representative-Id",
+            "in": "header",
+            "description": "RepresentativeId - required for channel API and when your client is another type than  Retail",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Session-Id",
+            "in": "header",
+            "description": "Session Id - required for channel WEB and PSD2",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "57e29265-aced-411b-ac99-2f3b90390a0b"
+            }
+          },
+          {
+            "name": "X-Payment-Consent-Id",
+            "in": "header",
+            "description": "Consent Id - required for channel PSD2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipientResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RecipientResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "authorizationId": {
+            "type": "string"
+          },
+          "operationId": {
+            "type": "string"
+          },
+          "errors": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AddressWithEmail": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/FullAddress"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "description": "Address with email"
+      },
+      "FullAddress": {
+        "required": [
+          "country"
+        ],
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "description": "Name of recipient city"
+          },
+          "street": {
+            "type": "string",
+            "description": "Name of recipient street"
+          },
+          "streetNumber": {
+            "type": "string",
+            "description": "Recipient street number"
+          },
+          "apartment": {
+            "type": "string",
+            "description": "Recipient apartment number (optional)"
+          },
+          "postcode": {
+            "type": "string",
+            "description": "Recipient post code"
+          },
+          "country": {
+            "type": "string",
+            "description": "Recipient country"
+          }
+        },
+        "description": "Full address format"
+      },
+      "AccountNumberRef": {
+        "required": [
+          "accountNumber",
+          "bic"
+        ],
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AccountRef"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "accountNumber": {
+                "type": "string"
+              },
+              "bic": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "AccountRef": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "IBAN": "#/components/schemas/IbanRef",
+            "ACCOUNT_NUMBER": "#/components/schemas/AccountNumberRef"
+          }
+        }
+      },
+      "IbanRef": {
+        "required": [
+          "iban"
+        ],
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AccountRef"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "iban": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "SchemeRequest": {
+        "required": [
+          "amount",
+          "recipientAccount",
+          "senderAccount"
+        ],
+        "type": "object",
+        "properties": {
+          "senderAccount": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AccountNumberRef"
+              },
+              {
+                "$ref": "#/components/schemas/IbanRef"
+              }
+            ]
+          },
+          "recipientAccount": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AccountNumberRef"
+              },
+              {
+                "$ref": "#/components/schemas/IbanRef"
+              }
+            ]
+          },
+          "amount": {
+            "$ref": "#/components/schemas/Value"
+          },
+          "executionDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "Value": {
+        "required": [
+          "amount",
+          "currency"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "Payment amount"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Payment currency (if different than senderAccount currency, automatic FX conversion will happen)"
+          }
+        }
+      },
+      "LocalTime": {
+        "type": "object",
+        "properties": {
+          "hour": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minute": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "second": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nano": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PaymentSchemeDetails": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "deliveryDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "timeZone": {
+            "type": "object",
+            "properties": {
+              "rules": {
+                "type": "object",
+                "properties": {
+                  "fixedOffset": {
+                    "type": "boolean"
+                  },
+                  "transitions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "offsetBefore": {
+                          "type": "object",
+                          "properties": {
+                            "totalSeconds": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "id": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "offsetAfter": {
+                          "type": "object",
+                          "properties": {
+                            "totalSeconds": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "id": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "duration": {
+                          "type": "object",
+                          "properties": {
+                            "seconds": {
+                              "type": "integer",
+                              "format": "int64"
+                            },
+                            "nano": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "units": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "dateBased": {
+                                    "type": "boolean"
+                                  },
+                                  "timeBased": {
+                                    "type": "boolean"
+                                  },
+                                  "durationEstimated": {
+                                    "type": "boolean"
+                                  }
+                                }
+                              }
+                            },
+                            "zero": {
+                              "type": "boolean"
+                            },
+                            "negative": {
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "gap": {
+                          "type": "boolean"
+                        },
+                        "dateTimeBefore": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "dateTimeAfter": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "instant": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "overlap": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  },
+                  "transitionRules": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "month": {
+                          "type": "string",
+                          "enum": [
+                            "JANUARY",
+                            "FEBRUARY",
+                            "MARCH",
+                            "APRIL",
+                            "MAY",
+                            "JUNE",
+                            "JULY",
+                            "AUGUST",
+                            "SEPTEMBER",
+                            "OCTOBER",
+                            "NOVEMBER",
+                            "DECEMBER"
+                          ]
+                        },
+                        "timeDefinition": {
+                          "type": "string",
+                          "enum": [
+                            "UTC",
+                            "WALL",
+                            "STANDARD"
+                          ]
+                        },
+                        "standardOffset": {
+                          "type": "object",
+                          "properties": {
+                            "totalSeconds": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "id": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "offsetBefore": {
+                          "type": "object",
+                          "properties": {
+                            "totalSeconds": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "id": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "offsetAfter": {
+                          "type": "object",
+                          "properties": {
+                            "totalSeconds": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "id": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "dayOfWeek": {
+                          "type": "string",
+                          "enum": [
+                            "MONDAY",
+                            "TUESDAY",
+                            "WEDNESDAY",
+                            "THURSDAY",
+                            "FRIDAY",
+                            "SATURDAY",
+                            "SUNDAY"
+                          ]
+                        },
+                        "dayOfMonthIndicator": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "localTime": {
+                          "$ref": "#/components/schemas/LocalTime"
+                        },
+                        "midnightEndOfDay": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "id": {
+                "type": "string"
+              }
+            }
+          },
+          "deliveryTime": {
+            "$ref": "#/components/schemas/LocalTime"
+          }
+        }
+      },
+      "PaymentSchemeResponse": {
+        "type": "object",
+        "properties": {
+          "normal": {
+            "$ref": "#/components/schemas/PaymentSchemeDetails"
+          },
+          "instant": {
+            "$ref": "#/components/schemas/PaymentSchemeDetails"
+          },
+          "errors": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "RecipientData": {
+        "required": [
+          "account",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "account": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AccountNumberRef"
+              },
+              {
+                "$ref": "#/components/schemas/IbanRef"
+              }
+            ]
+          },
+          "address": {
+            "$ref": "#/components/schemas/FullAddress"
+          }
+        }
+      },
+      "OperationRef": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "RecipientAuthResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "authorizationId": {
+            "type": "string"
+          },
+          "operationId": {
+            "type": "string"
+          },
+          "errors": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AddressDto": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          }
+        },
+        "description": "Target/recipient address",
+        "discriminator": {
+          "propertyName": "type"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/SepaAddress"
+          },
+          {
+            "$ref": "#/components/schemas/FullAddress"
+          }
+        ]
+      },
+      "Debtor": {
+        "required": [
+          "registrationIdentification"
+        ],
+        "type": "object",
+        "properties": {
+          "registrationIdentification": {
+            "maxLength": 15,
+            "minLength": 0,
+            "type": "string",
+            "description": "Debtor identifier: document type selector letter (N-NIP, P-PESEL, R-Regon, 1-ID card, 2-Passport, 3-other), followed by identifier of chosen document, e.g. N1234563218"
+          }
+        }
+      },
+      "PaymentRequest": {
+        "required": [
+          "amount",
+          "recipient",
+          "senderAccountNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "senderAccountNumber": {
+            "type": "string",
+            "description": "Customer/sender account number to be debited/charged."
+          },
+          "recipient": {
+            "$ref": "#/components/schemas/Recipient"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/Value"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title to be used in booking system or settlement. If not given it will be set to: 'Money Transfer'."
+          },
+          "endToEndId": {
+            "type": "string",
+            "description": "Identification passed on, unchanged, throughout the entire end-to-end chain, including target bank/financial institution."
+          },
+          "fxRateId": {
+            "type": "string",
+            "description": "FX rate id, used for fx calculation for fx payments. If fx rate id is not provided, but conversion is needed, latest available fx rate will be used."
+          },
+          "priority": {
+            "type": "string",
+            "description": "Priority of payment used for transfer routing calculations.",
+            "enum": [
+              "NORMAL",
+              "INSTANT"
+            ]
+          },
+          "executionDate": {
+            "type": "string",
+            "description": "Use it for creating deferred payment instructions. A deferred payment is a payment that is placed in advance for execution in requested future date. In the Sepa PAIN message RequestExecutionDate(<ReqdExctnDt>) is equivalent to this field. If the date is a past date, the deferred transfer will be made immediately as regular transfer, while the standing order will be rejected.",
+            "format": "date"
+          },
+          "forcedPaymentSchema": {
+            "type": "string",
+            "description": "Use this field only if payment must go trough specific schema. If target bank does not support specific schema, payment is rejected before booking. If this field is used, field 'priority' has no effect.",
+            "enum": [
+              "SCT",
+              "SCT_INST",
+              "SWIFT",
+              "ELIXIR"
+            ]
+          },
+          "purposeCode": {
+            "type": "string",
+            "description": "Used to provide the bank with certain information about the type of payments. Can be used to distinguish between salary payments and capital formation savings payments, for example."
+          },
+          "requestMetadata": {
+            "$ref": "#/components/schemas/RequestMetadata"
+          },
+          "tax": {
+            "$ref": "#/components/schemas/Tax"
+          }
+        }
+      },
+      "Recipient": {
+        "required": [
+          "accountNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Recipient id which was saved on the customer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "Recipient name - mandatory for payments to non-customer accounts"
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "Target/recipient account to be credited/funded"
+          },
+          "accountType": {
+            "type": "string",
+            "description": "Recipient account type",
+            "default": "IBAN",
+            "enum": [
+              "IBAN",
+              "ACCOUNT_NUMBER"
+            ]
+          },
+          "bic": {
+            "type": "string",
+            "description": "BIC of target/recipient bank"
+          },
+          "address": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FullAddress"
+              },
+              {
+                "$ref": "#/components/schemas/SepaAddress"
+              }
+            ]
+          }
+        },
+        "description": "Describes payment recipient."
+      },
+      "Record": {
+        "required": [
+          "formsCode",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "maxLength": 35,
+            "minLength": 0,
+            "type": "string",
+            "description": "Period code: 2 year digits, type letter (M-month, P-half year, R-year, K-quarter, D-decade, J-day) followed by period number (for R none, for K 01-04, for J 01-31 followed by 01-12), e.g. 21J1911"
+          },
+          "formsCode": {
+            "maxLength": 35,
+            "minLength": 0,
+            "type": "string",
+            "description": "Form code name, e.g. VAT-7"
+          },
+          "additionalInformation": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string",
+            "description": "Identification of commitment"
+          }
+        }
+      },
+      "RequestMetadata": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Allows idempotent retries. For a single customer, subsequent requests with the same id will not create new payments."
+          }
+        },
+        "description": "Technical information about this request."
+      },
+      "SepaAddress": {
+        "required": [
+          "country"
+        ],
+        "type": "object",
+        "description": "Address in sepa format",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "country": {
+                "type": "string",
+                "description": "Recipient country"
+              },
+              "firstLine": {
+                "type": "string",
+                "description": "First line of address"
+              },
+              "secondLine": {
+                "type": "string",
+                "description": "Second line of address"
+              }
+            }
+          }
+        ]
+      },
+      "Tax": {
+        "required": [
+          "debtor",
+          "record"
+        ],
+        "type": "object",
+        "properties": {
+          "debtor": {
+            "$ref": "#/components/schemas/Debtor"
+          },
+          "record": {
+            "$ref": "#/components/schemas/Record"
+          }
+        },
+        "description": "TAX details"
+      },
+      "PaymentResponse": {
+        "required": [
+          "referenceId",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "referenceId": {
+            "type": "string",
+            "description": "Our internal reference id. It can be used for all support or tracking requests."
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the instruction. BOOKED - instruction was successfully processed and founds were moved from sender account. ORDERED - the instruction is stored for execution in the future or periodic.  REJECTED - instruction was rejected, please check error list to see the reasons. BLOCKED - transfer was blocked due to AML/AF decision. AUTHORIZATION_REQUIRED - due to AML/AF decision a customer challenge is required to complete processing instruction. SIGNATURE_REQUIRED - the instruction is stored but a signature is required. This status is returned only for integration which supports signature mechanism. ",
+            "enum": [
+              "BOOKED",
+              "ORDERED",
+              "REJECTED",
+              "BLOCKED",
+              "CHALLENGE_REQUIRED",
+              "SIGNATURE_REQUIRED"
+            ]
+          },
+          "paymentScheme": {
+            "type": "string"
+          },
+          "fxRateId": {
+            "type": "string"
+          },
+          "authorizationId": {
+            "type": "string",
+            "description": "This field is required for challenge processing. The value of this field is responsible for start authorization on mobile devices."
+          },
+          "errors": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "OperationRequest": {
+        "required": [
+          "referenceId"
+        ],
+        "type": "object",
+        "properties": {
+          "referenceId": {
+            "type": "string",
+            "description": "Transfer reference which was authorized"
+          }
+        }
+      },
+      "AccountIdentification4Choice": {
+        "type": "object",
+        "properties": {
+          "iban": {
+            "type": "string",
+            "xml": {
+              "name": "IBAN"
+            }
+          },
+          "othr": {
+            "$ref": "#/components/schemas/GenericAccountIdentification1"
+          }
+        }
+      },
+      "AccountSchemeName1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "ActiveOrHistoricCurrencyAndAmount": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "ccy": {
+            "type": "string",
+            "xml": {
+              "name": "Ccy",
+              "attribute": true
+            }
+          }
+        }
+      },
+      "AddressType3Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            },
+            "enum": [
+              "ADDR",
+              "PBOX",
+              "HOME",
+              "BIZZ",
+              "MLTO",
+              "DLVY"
+            ]
+          },
+          "prtry": {
+            "$ref": "#/components/schemas/GenericIdentification30"
+          }
+        }
+      },
+      "AdviceType1": {
+        "type": "object",
+        "properties": {
+          "cdtAdvc": {
+            "$ref": "#/components/schemas/AdviceType1Choice"
+          },
+          "dbtAdvc": {
+            "$ref": "#/components/schemas/AdviceType1Choice"
+          }
+        }
+      },
+      "AdviceType1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            },
+            "enum": [
+              "ADWD",
+              "ADND"
+            ]
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "AmountType4Choice": {
+        "type": "object",
+        "properties": {
+          "instdAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "eqvtAmt": {
+            "$ref": "#/components/schemas/EquivalentAmount2"
+          }
+        }
+      },
+      "Authorisation1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            },
+            "enum": [
+              "AUTH",
+              "FDET",
+              "FSUM",
+              "ILEV"
+            ]
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "BranchAndFinancialInstitutionIdentification6": {
+        "required": [
+          "finInstnId"
+        ],
+        "type": "object",
+        "properties": {
+          "finInstnId": {
+            "$ref": "#/components/schemas/FinancialInstitutionIdentification18"
+          },
+          "brnchId": {
+            "$ref": "#/components/schemas/BranchData3"
+          }
+        }
+      },
+      "BranchData3": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "lei": {
+            "type": "string",
+            "xml": {
+              "name": "LEI"
+            }
+          },
+          "nm": {
+            "type": "string",
+            "xml": {
+              "name": "Nm"
+            }
+          },
+          "pstlAdr": {
+            "$ref": "#/components/schemas/PostalAddress24"
+          }
+        }
+      },
+      "CashAccount38": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/AccountIdentification4Choice"
+          },
+          "tp": {
+            "$ref": "#/components/schemas/CashAccountType2Choice"
+          },
+          "ccy": {
+            "type": "string",
+            "xml": {
+              "name": "Ccy"
+            }
+          },
+          "nm": {
+            "type": "string",
+            "xml": {
+              "name": "Nm"
+            }
+          },
+          "prxy": {
+            "$ref": "#/components/schemas/ProxyAccountIdentification1"
+          }
+        }
+      },
+      "CashAccountType2Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "CategoryPurpose1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "Cheque11": {
+        "type": "object",
+        "properties": {
+          "chqTp": {
+            "type": "string",
+            "xml": {
+              "name": "ChqTp"
+            },
+            "enum": [
+              "CCHQ",
+              "CCCH",
+              "BCHQ",
+              "DRFT",
+              "ELDR"
+            ]
+          },
+          "chqNb": {
+            "type": "string",
+            "xml": {
+              "name": "ChqNb"
+            }
+          },
+          "chqFr": {
+            "$ref": "#/components/schemas/NameAndAddress16"
+          },
+          "dlvryMtd": {
+            "$ref": "#/components/schemas/ChequeDeliveryMethod1Choice"
+          },
+          "dlvrTo": {
+            "$ref": "#/components/schemas/NameAndAddress16"
+          },
+          "instrPrty": {
+            "type": "string",
+            "xml": {
+              "name": "InstrPrty"
+            },
+            "enum": [
+              "HIGH",
+              "NORM"
+            ]
+          },
+          "chqMtrtyDt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "ChqMtrtyDt"
+            }
+          },
+          "frmsCd": {
+            "type": "string",
+            "xml": {
+              "name": "FrmsCd"
+            }
+          },
+          "memoFld": {
+            "type": "array",
+            "xml": {
+              "name": "MemoFld"
+            },
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "MemoFld"
+              }
+            }
+          },
+          "rgnlClrZone": {
+            "type": "string",
+            "xml": {
+              "name": "RgnlClrZone"
+            }
+          },
+          "prtLctn": {
+            "type": "string",
+            "xml": {
+              "name": "PrtLctn"
+            }
+          },
+          "sgntr": {
+            "type": "array",
+            "xml": {
+              "name": "Sgntr"
+            },
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "Sgntr"
+              }
+            }
+          }
+        }
+      },
+      "ChequeDeliveryMethod1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            },
+            "enum": [
+              "MLDB",
+              "MLCD",
+              "MLFA",
+              "CRDB",
+              "CRCD",
+              "CRFA",
+              "PUDB",
+              "PUCD",
+              "PUFA",
+              "RGDB",
+              "RGCD",
+              "RGFA"
+            ]
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "ClearingSystemIdentification2Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "ClearingSystemMemberIdentification2": {
+        "required": [
+          "mmbId"
+        ],
+        "type": "object",
+        "properties": {
+          "clrSysId": {
+            "$ref": "#/components/schemas/ClearingSystemIdentification2Choice"
+          },
+          "mmbId": {
+            "type": "string",
+            "xml": {
+              "name": "MmbId"
+            }
+          }
+        }
+      },
+      "Contact4": {
+        "type": "object",
+        "properties": {
+          "nmPrfx": {
+            "type": "string",
+            "xml": {
+              "name": "NmPrfx"
+            },
+            "enum": [
+              "DOCT",
+              "MADM",
+              "MISS",
+              "MIST",
+              "MIKS"
+            ]
+          },
+          "nm": {
+            "type": "string",
+            "xml": {
+              "name": "Nm"
+            }
+          },
+          "phneNb": {
+            "type": "string",
+            "xml": {
+              "name": "PhneNb"
+            }
+          },
+          "mobNb": {
+            "type": "string",
+            "xml": {
+              "name": "MobNb"
+            }
+          },
+          "faxNb": {
+            "type": "string",
+            "xml": {
+              "name": "FaxNb"
+            }
+          },
+          "emailAdr": {
+            "type": "string",
+            "xml": {
+              "name": "EmailAdr"
+            }
+          },
+          "emailPurp": {
+            "type": "string",
+            "xml": {
+              "name": "EmailPurp"
+            }
+          },
+          "jobTitl": {
+            "type": "string",
+            "xml": {
+              "name": "JobTitl"
+            }
+          },
+          "rspnsblty": {
+            "type": "string",
+            "xml": {
+              "name": "Rspnsblty"
+            }
+          },
+          "dept": {
+            "type": "string",
+            "xml": {
+              "name": "Dept"
+            }
+          },
+          "othr": {
+            "type": "array",
+            "xml": {
+              "name": "Othr"
+            },
+            "items": {
+              "$ref": "#/components/schemas/OtherContact1"
+            }
+          },
+          "prefrdMtd": {
+            "type": "string",
+            "xml": {
+              "name": "PrefrdMtd"
+            },
+            "enum": [
+              "LETT",
+              "MAIL",
+              "PHON",
+              "FAXX",
+              "CELL"
+            ]
+          }
+        }
+      },
+      "CreditTransferMandateData1": {
+        "type": "object",
+        "properties": {
+          "mndtId": {
+            "type": "string",
+            "xml": {
+              "name": "MndtId"
+            }
+          },
+          "tp": {
+            "$ref": "#/components/schemas/MandateTypeInformation2"
+          },
+          "dtOfSgntr": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "DtOfSgntr"
+            }
+          },
+          "dtOfVrfctn": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "DtOfVrfctn"
+            }
+          },
+          "elctrncSgntr": {
+            "type": "array",
+            "xml": {
+              "name": "ElctrncSgntr"
+            },
+            "items": {
+              "type": "string",
+              "format": "byte",
+              "xml": {
+                "name": "ElctrncSgntr"
+              }
+            }
+          },
+          "frstPmtDt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "FrstPmtDt"
+            }
+          },
+          "fnlPmtDt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "FnlPmtDt"
+            }
+          },
+          "frqcy": {
+            "$ref": "#/components/schemas/Frequency36Choice"
+          },
+          "rsn": {
+            "$ref": "#/components/schemas/MandateSetupReason1Choice"
+          }
+        }
+      },
+      "CreditTransferTransaction40": {
+        "required": [
+          "amt",
+          "pmtId"
+        ],
+        "type": "object",
+        "properties": {
+          "pmtId": {
+            "$ref": "#/components/schemas/PaymentIdentification6"
+          },
+          "pmtTpInf": {
+            "$ref": "#/components/schemas/PaymentTypeInformation26"
+          },
+          "amt": {
+            "$ref": "#/components/schemas/AmountType4Choice"
+          },
+          "xchgRateInf": {
+            "$ref": "#/components/schemas/ExchangeRate1"
+          },
+          "chrgBr": {
+            "type": "string",
+            "xml": {
+              "name": "ChrgBr"
+            },
+            "enum": [
+              "DEBT",
+              "CRED",
+              "SHAR",
+              "SLEV"
+            ]
+          },
+          "mndtRltdInf": {
+            "$ref": "#/components/schemas/CreditTransferMandateData1"
+          },
+          "chqInstr": {
+            "$ref": "#/components/schemas/Cheque11"
+          },
+          "ultmtDbtr": {
+            "$ref": "#/components/schemas/PartyIdentification135"
+          },
+          "intrmyAgt1": {
+            "$ref": "#/components/schemas/BranchAndFinancialInstitutionIdentification6"
+          },
+          "intrmyAgt1Acct": {
+            "$ref": "#/components/schemas/CashAccount38"
+          },
+          "intrmyAgt2": {
+            "$ref": "#/components/schemas/BranchAndFinancialInstitutionIdentification6"
+          },
+          "intrmyAgt2Acct": {
+            "$ref": "#/components/schemas/CashAccount38"
+          },
+          "intrmyAgt3": {
+            "$ref": "#/components/schemas/BranchAndFinancialInstitutionIdentification6"
+          },
+          "intrmyAgt3Acct": {
+            "$ref": "#/components/schemas/CashAccount38"
+          },
+          "cdtrAgt": {
+            "$ref": "#/components/schemas/BranchAndFinancialInstitutionIdentification6"
+          },
+          "cdtrAgtAcct": {
+            "$ref": "#/components/schemas/CashAccount38"
+          },
+          "cdtr": {
+            "$ref": "#/components/schemas/PartyIdentification135"
+          },
+          "cdtrAcct": {
+            "$ref": "#/components/schemas/CashAccount38"
+          },
+          "ultmtCdtr": {
+            "$ref": "#/components/schemas/PartyIdentification135"
+          },
+          "instrForCdtrAgt": {
+            "type": "array",
+            "xml": {
+              "name": "InstrForCdtrAgt"
+            },
+            "items": {
+              "$ref": "#/components/schemas/InstructionForCreditorAgent3"
+            }
+          },
+          "instrForDbtrAgt": {
+            "$ref": "#/components/schemas/InstructionForDebtorAgent1"
+          },
+          "purp": {
+            "$ref": "#/components/schemas/Purpose2Choice"
+          },
+          "rgltryRptg": {
+            "type": "array",
+            "xml": {
+              "name": "RgltryRptg"
+            },
+            "items": {
+              "$ref": "#/components/schemas/RegulatoryReporting3"
+            }
+          },
+          "tax": {
+            "$ref": "#/components/schemas/TaxInformation8"
+          },
+          "rltdRmtInf": {
+            "type": "array",
+            "xml": {
+              "name": "RltdRmtInf"
+            },
+            "items": {
+              "$ref": "#/components/schemas/RemittanceLocation7"
+            }
+          },
+          "rmtInf": {
+            "$ref": "#/components/schemas/RemittanceInformation16"
+          },
+          "splmtryData": {
+            "type": "array",
+            "xml": {
+              "name": "SplmtryData"
+            },
+            "items": {
+              "$ref": "#/components/schemas/SupplementaryData1"
+            }
+          }
+        }
+      },
+      "CreditorReferenceInformation2": {
+        "type": "object",
+        "properties": {
+          "tp": {
+            "$ref": "#/components/schemas/CreditorReferenceType2"
+          },
+          "ref": {
+            "type": "string",
+            "xml": {
+              "name": "Ref"
+            }
+          }
+        }
+      },
+      "CreditorReferenceType1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            },
+            "enum": [
+              "RADM",
+              "RPIN",
+              "FXDR",
+              "DISP",
+              "PUOR",
+              "SCOR"
+            ]
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "CreditorReferenceType2": {
+        "required": [
+          "cdOrPrtry"
+        ],
+        "type": "object",
+        "properties": {
+          "cdOrPrtry": {
+            "$ref": "#/components/schemas/CreditorReferenceType1Choice"
+          },
+          "issr": {
+            "type": "string",
+            "xml": {
+              "name": "Issr"
+            }
+          }
+        }
+      },
+      "CustomerCreditTransferInitiationV10": {
+        "required": [
+          "grpHdr",
+          "pmtInf"
+        ],
+        "type": "object",
+        "properties": {
+          "grpHdr": {
+            "$ref": "#/components/schemas/GroupHeader95"
+          },
+          "pmtInf": {
+            "type": "array",
+            "xml": {
+              "name": "PmtInf"
+            },
+            "items": {
+              "$ref": "#/components/schemas/PaymentInstruction34"
+            }
+          },
+          "splmtryData": {
+            "type": "array",
+            "xml": {
+              "name": "SplmtryData"
+            },
+            "items": {
+              "$ref": "#/components/schemas/SupplementaryData1"
+            }
+          }
+        }
+      },
+      "DateAndDateTime2Choice": {
+        "type": "object",
+        "properties": {
+          "dt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "Dt"
+            }
+          },
+          "dtTm": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "DtTm"
+            }
+          }
+        }
+      },
+      "DateAndPlaceOfBirth1": {
+        "required": [
+          "birthDt",
+          "cityOfBirth",
+          "ctryOfBirth"
+        ],
+        "type": "object",
+        "properties": {
+          "birthDt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "BirthDt"
+            }
+          },
+          "prvcOfBirth": {
+            "type": "string",
+            "xml": {
+              "name": "PrvcOfBirth"
+            }
+          },
+          "cityOfBirth": {
+            "type": "string",
+            "xml": {
+              "name": "CityOfBirth"
+            }
+          },
+          "ctryOfBirth": {
+            "type": "string",
+            "xml": {
+              "name": "CtryOfBirth"
+            }
+          }
+        }
+      },
+      "DatePeriod2": {
+        "required": [
+          "frDt",
+          "toDt"
+        ],
+        "type": "object",
+        "properties": {
+          "frDt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "FrDt"
+            }
+          },
+          "toDt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "ToDt"
+            }
+          }
+        }
+      },
+      "DiscountAmountAndType1": {
+        "required": [
+          "amt"
+        ],
+        "type": "object",
+        "properties": {
+          "tp": {
+            "$ref": "#/components/schemas/DiscountAmountType1Choice"
+          },
+          "amt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          }
+        }
+      },
+      "DiscountAmountType1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "Document": {
+        "required": [
+          "cstmrCdtTrfInitn"
+        ],
+        "type": "object",
+        "properties": {
+          "cstmrCdtTrfInitn": {
+            "$ref": "#/components/schemas/CustomerCreditTransferInitiationV10"
+          }
+        }
+      },
+      "DocumentAdjustment1": {
+        "required": [
+          "amt"
+        ],
+        "type": "object",
+        "properties": {
+          "amt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "cdtDbtInd": {
+            "type": "string",
+            "xml": {
+              "name": "CdtDbtInd"
+            },
+            "enum": [
+              "CRDT",
+              "DBIT"
+            ]
+          },
+          "rsn": {
+            "type": "string",
+            "xml": {
+              "name": "Rsn"
+            }
+          },
+          "addtlInf": {
+            "type": "string",
+            "xml": {
+              "name": "AddtlInf"
+            }
+          }
+        }
+      },
+      "DocumentLineIdentification1": {
+        "type": "object",
+        "properties": {
+          "tp": {
+            "$ref": "#/components/schemas/DocumentLineType1"
+          },
+          "nb": {
+            "type": "string",
+            "xml": {
+              "name": "Nb"
+            }
+          },
+          "rltdDt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "RltdDt"
+            }
+          }
+        }
+      },
+      "DocumentLineInformation1": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "array",
+            "xml": {
+              "name": "Id"
+            },
+            "items": {
+              "$ref": "#/components/schemas/DocumentLineIdentification1"
+            }
+          },
+          "desc": {
+            "type": "string",
+            "xml": {
+              "name": "Desc"
+            }
+          },
+          "amt": {
+            "$ref": "#/components/schemas/RemittanceAmount3"
+          }
+        }
+      },
+      "DocumentLineType1": {
+        "required": [
+          "cdOrPrtry"
+        ],
+        "type": "object",
+        "properties": {
+          "cdOrPrtry": {
+            "$ref": "#/components/schemas/DocumentLineType1Choice"
+          },
+          "issr": {
+            "type": "string",
+            "xml": {
+              "name": "Issr"
+            }
+          }
+        }
+      },
+      "DocumentLineType1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "EquivalentAmount2": {
+        "required": [
+          "amt",
+          "ccyOfTrf"
+        ],
+        "type": "object",
+        "properties": {
+          "amt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "ccyOfTrf": {
+            "type": "string",
+            "xml": {
+              "name": "CcyOfTrf"
+            }
+          }
+        }
+      },
+      "ExchangeRate1": {
+        "type": "object",
+        "properties": {
+          "unitCcy": {
+            "type": "string",
+            "xml": {
+              "name": "UnitCcy"
+            }
+          },
+          "xchgRate": {
+            "type": "number",
+            "xml": {
+              "name": "XchgRate"
+            }
+          },
+          "rateTp": {
+            "type": "string",
+            "xml": {
+              "name": "RateTp"
+            },
+            "enum": [
+              "SPOT",
+              "SALE",
+              "AGRD"
+            ]
+          },
+          "ctrctId": {
+            "type": "string",
+            "xml": {
+              "name": "CtrctId"
+            }
+          }
+        }
+      },
+      "FinancialIdentificationSchemeName1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "FinancialInstitutionIdentification18": {
+        "type": "object",
+        "properties": {
+          "bicfi": {
+            "type": "string",
+            "xml": {
+              "name": "BICFI"
+            }
+          },
+          "clrSysMmbId": {
+            "$ref": "#/components/schemas/ClearingSystemMemberIdentification2"
+          },
+          "lei": {
+            "type": "string",
+            "xml": {
+              "name": "LEI"
+            }
+          },
+          "nm": {
+            "type": "string",
+            "xml": {
+              "name": "Nm"
+            }
+          },
+          "pstlAdr": {
+            "$ref": "#/components/schemas/PostalAddress24"
+          },
+          "othr": {
+            "$ref": "#/components/schemas/GenericFinancialIdentification1"
+          }
+        }
+      },
+      "Frequency36Choice": {
+        "type": "object",
+        "properties": {
+          "tp": {
+            "type": "string",
+            "xml": {
+              "name": "Tp"
+            },
+            "enum": [
+              "YEAR",
+              "MNTH",
+              "QURT",
+              "MIAN",
+              "WEEK",
+              "DAIL",
+              "ADHO",
+              "INDA",
+              "FRTN"
+            ]
+          },
+          "prd": {
+            "$ref": "#/components/schemas/FrequencyPeriod1"
+          },
+          "ptInTm": {
+            "$ref": "#/components/schemas/FrequencyAndMoment1"
+          }
+        }
+      },
+      "FrequencyAndMoment1": {
+        "required": [
+          "ptInTm",
+          "tp"
+        ],
+        "type": "object",
+        "properties": {
+          "tp": {
+            "type": "string",
+            "xml": {
+              "name": "Tp"
+            },
+            "enum": [
+              "YEAR",
+              "MNTH",
+              "QURT",
+              "MIAN",
+              "WEEK",
+              "DAIL",
+              "ADHO",
+              "INDA",
+              "FRTN"
+            ]
+          },
+          "ptInTm": {
+            "type": "string",
+            "xml": {
+              "name": "PtInTm"
+            }
+          }
+        }
+      },
+      "FrequencyPeriod1": {
+        "required": [
+          "cntPerPrd",
+          "tp"
+        ],
+        "type": "object",
+        "properties": {
+          "tp": {
+            "type": "string",
+            "xml": {
+              "name": "Tp"
+            },
+            "enum": [
+              "YEAR",
+              "MNTH",
+              "QURT",
+              "MIAN",
+              "WEEK",
+              "DAIL",
+              "ADHO",
+              "INDA",
+              "FRTN"
+            ]
+          },
+          "cntPerPrd": {
+            "type": "number",
+            "xml": {
+              "name": "CntPerPrd"
+            }
+          }
+        }
+      },
+      "Garnishment3": {
+        "required": [
+          "tp"
+        ],
+        "type": "object",
+        "properties": {
+          "tp": {
+            "$ref": "#/components/schemas/GarnishmentType1"
+          },
+          "grnshee": {
+            "$ref": "#/components/schemas/PartyIdentification135"
+          },
+          "grnshmtAdmstr": {
+            "$ref": "#/components/schemas/PartyIdentification135"
+          },
+          "refNb": {
+            "type": "string",
+            "xml": {
+              "name": "RefNb"
+            }
+          },
+          "dt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "Dt"
+            }
+          },
+          "rmtdAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "fmlyMdclInsrncInd": {
+            "type": "boolean",
+            "xml": {
+              "name": "FmlyMdclInsrncInd"
+            }
+          },
+          "mplyeeTermntnInd": {
+            "type": "boolean",
+            "xml": {
+              "name": "MplyeeTermntnInd"
+            }
+          }
+        }
+      },
+      "GarnishmentType1": {
+        "required": [
+          "cdOrPrtry"
+        ],
+        "type": "object",
+        "properties": {
+          "cdOrPrtry": {
+            "$ref": "#/components/schemas/GarnishmentType1Choice"
+          },
+          "issr": {
+            "type": "string",
+            "xml": {
+              "name": "Issr"
+            }
+          }
+        }
+      },
+      "GarnishmentType1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "GenericAccountIdentification1": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "schmeNm": {
+            "$ref": "#/components/schemas/AccountSchemeName1Choice"
+          },
+          "issr": {
+            "type": "string",
+            "xml": {
+              "name": "Issr"
+            }
+          }
+        }
+      },
+      "GenericFinancialIdentification1": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "schmeNm": {
+            "$ref": "#/components/schemas/FinancialIdentificationSchemeName1Choice"
+          },
+          "issr": {
+            "type": "string",
+            "xml": {
+              "name": "Issr"
+            }
+          }
+        }
+      },
+      "GenericIdentification30": {
+        "required": [
+          "id",
+          "issr"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "issr": {
+            "type": "string",
+            "xml": {
+              "name": "Issr"
+            }
+          },
+          "schmeNm": {
+            "type": "string",
+            "xml": {
+              "name": "SchmeNm"
+            }
+          }
+        }
+      },
+      "GenericOrganisationIdentification1": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "schmeNm": {
+            "$ref": "#/components/schemas/OrganisationIdentificationSchemeName1Choice"
+          },
+          "issr": {
+            "type": "string",
+            "xml": {
+              "name": "Issr"
+            }
+          }
+        }
+      },
+      "GenericPersonIdentification1": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          },
+          "schmeNm": {
+            "$ref": "#/components/schemas/PersonIdentificationSchemeName1Choice"
+          },
+          "issr": {
+            "type": "string",
+            "xml": {
+              "name": "Issr"
+            }
+          }
+        }
+      },
+      "GroupHeader95": {
+        "required": [
+          "creDtTm",
+          "initgPty",
+          "msgId",
+          "nbOfTxs"
+        ],
+        "type": "object",
+        "properties": {
+          "msgId": {
+            "type": "string",
+            "xml": {
+              "name": "MsgId"
+            }
+          },
+          "creDtTm": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "CreDtTm"
+            }
+          },
+          "authstn": {
+            "type": "array",
+            "xml": {
+              "name": "Authstn"
+            },
+            "items": {
+              "$ref": "#/components/schemas/Authorisation1Choice"
+            }
+          },
+          "nbOfTxs": {
+            "type": "string",
+            "xml": {
+              "name": "NbOfTxs"
+            }
+          },
+          "ctrlSum": {
+            "type": "number",
+            "xml": {
+              "name": "CtrlSum"
+            }
+          },
+          "initgPty": {
+            "$ref": "#/components/schemas/PartyIdentification135"
+          },
+          "fwdgAgt": {
+            "$ref": "#/components/schemas/BranchAndFinancialInstitutionIdentification6"
+          },
+          "initnSrc": {
+            "$ref": "#/components/schemas/PaymentInitiationSource1"
+          }
+        }
+      },
+      "InstructionForCreditorAgent3": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "instrInf": {
+            "type": "string",
+            "xml": {
+              "name": "InstrInf"
+            }
+          }
+        }
+      },
+      "InstructionForDebtorAgent1": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "instrInf": {
+            "type": "string",
+            "xml": {
+              "name": "InstrInf"
+            }
+          }
+        }
+      },
+      "LocalInstrument2Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "MandateClassification1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            },
+            "enum": [
+              "FIXE",
+              "USGB",
+              "VARI"
+            ]
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "MandateSetupReason1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "MandateTypeInformation2": {
+        "type": "object",
+        "properties": {
+          "svcLvl": {
+            "$ref": "#/components/schemas/ServiceLevel8Choice"
+          },
+          "lclInstrm": {
+            "$ref": "#/components/schemas/LocalInstrument2Choice"
+          },
+          "ctgyPurp": {
+            "$ref": "#/components/schemas/CategoryPurpose1Choice"
+          },
+          "clssfctn": {
+            "$ref": "#/components/schemas/MandateClassification1Choice"
+          }
+        }
+      },
+      "NameAndAddress16": {
+        "required": [
+          "adr",
+          "nm"
+        ],
+        "type": "object",
+        "properties": {
+          "nm": {
+            "type": "string",
+            "xml": {
+              "name": "Nm"
+            }
+          },
+          "adr": {
+            "$ref": "#/components/schemas/PostalAddress24"
+          }
+        }
+      },
+      "OrganisationIdentification29": {
+        "type": "object",
+        "properties": {
+          "anyBIC": {
+            "type": "string",
+            "xml": {
+              "name": "AnyBIC"
+            }
+          },
+          "lei": {
+            "type": "string",
+            "xml": {
+              "name": "LEI"
+            }
+          },
+          "othr": {
+            "type": "array",
+            "xml": {
+              "name": "Othr"
+            },
+            "items": {
+              "$ref": "#/components/schemas/GenericOrganisationIdentification1"
+            }
+          }
+        }
+      },
+      "OrganisationIdentificationSchemeName1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "OtherContact1": {
+        "required": [
+          "chanlTp"
+        ],
+        "type": "object",
+        "properties": {
+          "chanlTp": {
+            "type": "string",
+            "xml": {
+              "name": "ChanlTp"
+            }
+          },
+          "id": {
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          }
+        }
+      },
+      "Party38Choice": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "$ref": "#/components/schemas/OrganisationIdentification29"
+          },
+          "prvtId": {
+            "$ref": "#/components/schemas/PersonIdentification13"
+          }
+        }
+      },
+      "PartyIdentification135": {
+        "type": "object",
+        "properties": {
+          "nm": {
+            "type": "string",
+            "xml": {
+              "name": "Nm"
+            }
+          },
+          "pstlAdr": {
+            "$ref": "#/components/schemas/PostalAddress24"
+          },
+          "id": {
+            "$ref": "#/components/schemas/Party38Choice"
+          },
+          "ctryOfRes": {
+            "type": "string",
+            "xml": {
+              "name": "CtryOfRes"
+            }
+          },
+          "ctctDtls": {
+            "$ref": "#/components/schemas/Contact4"
+          }
+        }
+      },
+      "PaymentIdentification6": {
+        "required": [
+          "endToEndId"
+        ],
+        "type": "object",
+        "properties": {
+          "instrId": {
+            "type": "string",
+            "xml": {
+              "name": "InstrId"
+            }
+          },
+          "endToEndId": {
+            "type": "string",
+            "xml": {
+              "name": "EndToEndId"
+            }
+          },
+          "uetr": {
+            "type": "string",
+            "xml": {
+              "name": "UETR"
+            }
+          }
+        }
+      },
+      "PaymentInitiationSource1": {
+        "required": [
+          "nm"
+        ],
+        "type": "object",
+        "properties": {
+          "nm": {
+            "type": "string",
+            "xml": {
+              "name": "Nm"
+            }
+          },
+          "prvdr": {
+            "type": "string",
+            "xml": {
+              "name": "Prvdr"
+            }
+          },
+          "vrsn": {
+            "type": "string",
+            "xml": {
+              "name": "Vrsn"
+            }
+          }
+        }
+      },
+      "PaymentInstruction34": {
+        "required": [
+          "cdtTrfTxInf",
+          "dbtr",
+          "dbtrAcct",
+          "dbtrAgt",
+          "pmtInfId",
+          "pmtMtd",
+          "reqdExctnDt"
+        ],
+        "type": "object",
+        "properties": {
+          "pmtInfId": {
+            "type": "string",
+            "xml": {
+              "name": "PmtInfId"
+            }
+          },
+          "pmtMtd": {
+            "type": "string",
+            "xml": {
+              "name": "PmtMtd"
+            },
+            "enum": [
+              "CHK",
+              "TRF",
+              "TRA"
+            ]
+          },
+          "reqdAdvcTp": {
+            "$ref": "#/components/schemas/AdviceType1"
+          },
+          "btchBookg": {
+            "type": "boolean",
+            "xml": {
+              "name": "BtchBookg"
+            }
+          },
+          "nbOfTxs": {
+            "type": "string",
+            "xml": {
+              "name": "NbOfTxs"
+            }
+          },
+          "ctrlSum": {
+            "type": "number",
+            "xml": {
+              "name": "CtrlSum"
+            }
+          },
+          "pmtTpInf": {
+            "$ref": "#/components/schemas/PaymentTypeInformation26"
+          },
+          "reqdExctnDt": {
+            "$ref": "#/components/schemas/DateAndDateTime2Choice"
+          },
+          "poolgAdjstmntDt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "PoolgAdjstmntDt"
+            }
+          },
+          "dbtr": {
+            "$ref": "#/components/schemas/PartyIdentification135"
+          },
+          "dbtrAcct": {
+            "$ref": "#/components/schemas/CashAccount38"
+          },
+          "dbtrAgt": {
+            "$ref": "#/components/schemas/BranchAndFinancialInstitutionIdentification6"
+          },
+          "dbtrAgtAcct": {
+            "$ref": "#/components/schemas/CashAccount38"
+          },
+          "instrForDbtrAgt": {
+            "type": "string",
+            "xml": {
+              "name": "InstrForDbtrAgt"
+            }
+          },
+          "ultmtDbtr": {
+            "$ref": "#/components/schemas/PartyIdentification135"
+          },
+          "chrgBr": {
+            "type": "string",
+            "xml": {
+              "name": "ChrgBr"
+            },
+            "enum": [
+              "DEBT",
+              "CRED",
+              "SHAR",
+              "SLEV"
+            ]
+          },
+          "chrgsAcct": {
+            "$ref": "#/components/schemas/CashAccount38"
+          },
+          "chrgsAcctAgt": {
+            "$ref": "#/components/schemas/BranchAndFinancialInstitutionIdentification6"
+          },
+          "cdtTrfTxInf": {
+            "type": "array",
+            "xml": {
+              "name": "CdtTrfTxInf"
+            },
+            "items": {
+              "$ref": "#/components/schemas/CreditTransferTransaction40"
+            }
+          }
+        }
+      },
+      "PaymentTypeInformation26": {
+        "type": "object",
+        "properties": {
+          "instrPrty": {
+            "type": "string",
+            "xml": {
+              "name": "InstrPrty"
+            },
+            "enum": [
+              "HIGH",
+              "NORM"
+            ]
+          },
+          "svcLvl": {
+            "type": "array",
+            "xml": {
+              "name": "SvcLvl"
+            },
+            "items": {
+              "$ref": "#/components/schemas/ServiceLevel8Choice"
+            }
+          },
+          "lclInstrm": {
+            "$ref": "#/components/schemas/LocalInstrument2Choice"
+          },
+          "ctgyPurp": {
+            "$ref": "#/components/schemas/CategoryPurpose1Choice"
+          }
+        }
+      },
+      "PersonIdentification13": {
+        "type": "object",
+        "properties": {
+          "dtAndPlcOfBirth": {
+            "$ref": "#/components/schemas/DateAndPlaceOfBirth1"
+          },
+          "othr": {
+            "type": "array",
+            "xml": {
+              "name": "Othr"
+            },
+            "items": {
+              "$ref": "#/components/schemas/GenericPersonIdentification1"
+            }
+          }
+        }
+      },
+      "PersonIdentificationSchemeName1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "PostalAddress24": {
+        "type": "object",
+        "properties": {
+          "adrTp": {
+            "$ref": "#/components/schemas/AddressType3Choice"
+          },
+          "dept": {
+            "type": "string",
+            "xml": {
+              "name": "Dept"
+            }
+          },
+          "subDept": {
+            "type": "string",
+            "xml": {
+              "name": "SubDept"
+            }
+          },
+          "strtNm": {
+            "type": "string",
+            "xml": {
+              "name": "StrtNm"
+            }
+          },
+          "bldgNb": {
+            "type": "string",
+            "xml": {
+              "name": "BldgNb"
+            }
+          },
+          "bldgNm": {
+            "type": "string",
+            "xml": {
+              "name": "BldgNm"
+            }
+          },
+          "flr": {
+            "type": "string",
+            "xml": {
+              "name": "Flr"
+            }
+          },
+          "pstBx": {
+            "type": "string",
+            "xml": {
+              "name": "PstBx"
+            }
+          },
+          "room": {
+            "type": "string",
+            "xml": {
+              "name": "Room"
+            }
+          },
+          "pstCd": {
+            "type": "string",
+            "xml": {
+              "name": "PstCd"
+            }
+          },
+          "twnNm": {
+            "type": "string",
+            "xml": {
+              "name": "TwnNm"
+            }
+          },
+          "twnLctnNm": {
+            "type": "string",
+            "xml": {
+              "name": "TwnLctnNm"
+            }
+          },
+          "dstrctNm": {
+            "type": "string",
+            "xml": {
+              "name": "DstrctNm"
+            }
+          },
+          "ctrySubDvsn": {
+            "type": "string",
+            "xml": {
+              "name": "CtrySubDvsn"
+            }
+          },
+          "ctry": {
+            "type": "string",
+            "xml": {
+              "name": "Ctry"
+            }
+          },
+          "adrLine": {
+            "type": "array",
+            "xml": {
+              "name": "AdrLine"
+            },
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "AdrLine"
+              }
+            }
+          }
+        }
+      },
+      "ProxyAccountIdentification1": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "tp": {
+            "$ref": "#/components/schemas/ProxyAccountType1Choice"
+          },
+          "id": {
+            "type": "string",
+            "xml": {
+              "name": "Id"
+            }
+          }
+        }
+      },
+      "ProxyAccountType1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "Purpose2Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "ReferredDocumentInformation7": {
+        "type": "object",
+        "properties": {
+          "tp": {
+            "$ref": "#/components/schemas/ReferredDocumentType4"
+          },
+          "nb": {
+            "type": "string",
+            "xml": {
+              "name": "Nb"
+            }
+          },
+          "rltdDt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "RltdDt"
+            }
+          },
+          "lineDtls": {
+            "type": "array",
+            "xml": {
+              "name": "LineDtls"
+            },
+            "items": {
+              "$ref": "#/components/schemas/DocumentLineInformation1"
+            }
+          }
+        }
+      },
+      "ReferredDocumentType3Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            },
+            "enum": [
+              "MSIN",
+              "CNFA",
+              "DNFA",
+              "CINV",
+              "CREN",
+              "DEBN",
+              "HIRI",
+              "SBIN",
+              "CMCN",
+              "SOAC",
+              "DISP",
+              "BOLD",
+              "VCHR",
+              "AROI",
+              "TSUT",
+              "PUOR"
+            ]
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "ReferredDocumentType4": {
+        "required": [
+          "cdOrPrtry"
+        ],
+        "type": "object",
+        "properties": {
+          "cdOrPrtry": {
+            "$ref": "#/components/schemas/ReferredDocumentType3Choice"
+          },
+          "issr": {
+            "type": "string",
+            "xml": {
+              "name": "Issr"
+            }
+          }
+        }
+      },
+      "RegulatoryAuthority2": {
+        "type": "object",
+        "properties": {
+          "nm": {
+            "type": "string",
+            "xml": {
+              "name": "Nm"
+            }
+          },
+          "ctry": {
+            "type": "string",
+            "xml": {
+              "name": "Ctry"
+            }
+          }
+        }
+      },
+      "RegulatoryReporting3": {
+        "type": "object",
+        "properties": {
+          "dbtCdtRptgInd": {
+            "type": "string",
+            "xml": {
+              "name": "DbtCdtRptgInd"
+            },
+            "enum": [
+              "CRED",
+              "DEBT",
+              "BOTH"
+            ]
+          },
+          "authrty": {
+            "$ref": "#/components/schemas/RegulatoryAuthority2"
+          },
+          "dtls": {
+            "type": "array",
+            "xml": {
+              "name": "Dtls"
+            },
+            "items": {
+              "$ref": "#/components/schemas/StructuredRegulatoryReporting3"
+            }
+          }
+        }
+      },
+      "RemittanceAmount2": {
+        "type": "object",
+        "properties": {
+          "duePyblAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "dscntApldAmt": {
+            "type": "array",
+            "xml": {
+              "name": "DscntApldAmt"
+            },
+            "items": {
+              "$ref": "#/components/schemas/DiscountAmountAndType1"
+            }
+          },
+          "cdtNoteAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "taxAmt": {
+            "type": "array",
+            "xml": {
+              "name": "TaxAmt"
+            },
+            "items": {
+              "$ref": "#/components/schemas/TaxAmountAndType1"
+            }
+          },
+          "adjstmntAmtAndRsn": {
+            "type": "array",
+            "xml": {
+              "name": "AdjstmntAmtAndRsn"
+            },
+            "items": {
+              "$ref": "#/components/schemas/DocumentAdjustment1"
+            }
+          },
+          "rmtdAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          }
+        }
+      },
+      "RemittanceAmount3": {
+        "type": "object",
+        "properties": {
+          "duePyblAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "dscntApldAmt": {
+            "type": "array",
+            "xml": {
+              "name": "DscntApldAmt"
+            },
+            "items": {
+              "$ref": "#/components/schemas/DiscountAmountAndType1"
+            }
+          },
+          "cdtNoteAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "taxAmt": {
+            "type": "array",
+            "xml": {
+              "name": "TaxAmt"
+            },
+            "items": {
+              "$ref": "#/components/schemas/TaxAmountAndType1"
+            }
+          },
+          "adjstmntAmtAndRsn": {
+            "type": "array",
+            "xml": {
+              "name": "AdjstmntAmtAndRsn"
+            },
+            "items": {
+              "$ref": "#/components/schemas/DocumentAdjustment1"
+            }
+          },
+          "rmtdAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          }
+        }
+      },
+      "RemittanceInformation16": {
+        "type": "object",
+        "properties": {
+          "ustrd": {
+            "type": "array",
+            "xml": {
+              "name": "Ustrd"
+            },
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "Ustrd"
+              }
+            }
+          },
+          "strd": {
+            "type": "array",
+            "xml": {
+              "name": "Strd"
+            },
+            "items": {
+              "$ref": "#/components/schemas/StructuredRemittanceInformation16"
+            }
+          }
+        }
+      },
+      "RemittanceLocation7": {
+        "type": "object",
+        "properties": {
+          "rmtId": {
+            "type": "string",
+            "xml": {
+              "name": "RmtId"
+            }
+          },
+          "rmtLctnDtls": {
+            "type": "array",
+            "xml": {
+              "name": "RmtLctnDtls"
+            },
+            "items": {
+              "$ref": "#/components/schemas/RemittanceLocationData1"
+            }
+          }
+        }
+      },
+      "RemittanceLocationData1": {
+        "required": [
+          "mtd"
+        ],
+        "type": "object",
+        "properties": {
+          "mtd": {
+            "type": "string",
+            "xml": {
+              "name": "Mtd"
+            },
+            "enum": [
+              "FAXI",
+              "EDIC",
+              "URID",
+              "EMAL",
+              "POST",
+              "SMSM"
+            ]
+          },
+          "elctrncAdr": {
+            "type": "string",
+            "xml": {
+              "name": "ElctrncAdr"
+            }
+          },
+          "pstlAdr": {
+            "$ref": "#/components/schemas/NameAndAddress16"
+          }
+        }
+      },
+      "ServiceLevel8Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "StructuredRegulatoryReporting3": {
+        "type": "object",
+        "properties": {
+          "tp": {
+            "type": "string",
+            "xml": {
+              "name": "Tp"
+            }
+          },
+          "dt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "Dt"
+            }
+          },
+          "ctry": {
+            "type": "string",
+            "xml": {
+              "name": "Ctry"
+            }
+          },
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "amt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "inf": {
+            "type": "array",
+            "xml": {
+              "name": "Inf"
+            },
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "Inf"
+              }
+            }
+          }
+        }
+      },
+      "StructuredRemittanceInformation16": {
+        "type": "object",
+        "properties": {
+          "rfrdDocInf": {
+            "type": "array",
+            "xml": {
+              "name": "RfrdDocInf"
+            },
+            "items": {
+              "$ref": "#/components/schemas/ReferredDocumentInformation7"
+            }
+          },
+          "rfrdDocAmt": {
+            "$ref": "#/components/schemas/RemittanceAmount2"
+          },
+          "cdtrRefInf": {
+            "$ref": "#/components/schemas/CreditorReferenceInformation2"
+          },
+          "invcr": {
+            "$ref": "#/components/schemas/PartyIdentification135"
+          },
+          "invcee": {
+            "$ref": "#/components/schemas/PartyIdentification135"
+          },
+          "taxRmt": {
+            "$ref": "#/components/schemas/TaxInformation7"
+          },
+          "grnshmtRmt": {
+            "$ref": "#/components/schemas/Garnishment3"
+          },
+          "addtlRmtInf": {
+            "type": "array",
+            "xml": {
+              "name": "AddtlRmtInf"
+            },
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "AddtlRmtInf"
+              }
+            }
+          }
+        }
+      },
+      "SupplementaryData1": {
+        "required": [
+          "envlp"
+        ],
+        "type": "object",
+        "properties": {
+          "plcAndNm": {
+            "type": "string",
+            "xml": {
+              "name": "PlcAndNm"
+            }
+          },
+          "envlp": {
+            "$ref": "#/components/schemas/SupplementaryDataEnvelope1"
+          }
+        }
+      },
+      "SupplementaryDataEnvelope1": {
+        "type": "object",
+        "properties": {
+          "any": {
+            "type": "object"
+          }
+        }
+      },
+      "TaxAmount2": {
+        "type": "object",
+        "properties": {
+          "rate": {
+            "type": "number",
+            "xml": {
+              "name": "Rate"
+            }
+          },
+          "taxblBaseAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "ttlAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "dtls": {
+            "type": "array",
+            "xml": {
+              "name": "Dtls"
+            },
+            "items": {
+              "$ref": "#/components/schemas/TaxRecordDetails2"
+            }
+          }
+        }
+      },
+      "TaxAmountAndType1": {
+        "required": [
+          "amt"
+        ],
+        "type": "object",
+        "properties": {
+          "tp": {
+            "$ref": "#/components/schemas/TaxAmountType1Choice"
+          },
+          "amt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          }
+        }
+      },
+      "TaxAmountType1Choice": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "xml": {
+              "name": "Cd"
+            }
+          },
+          "prtry": {
+            "type": "string",
+            "xml": {
+              "name": "Prtry"
+            }
+          }
+        }
+      },
+      "TaxAuthorisation1": {
+        "type": "object",
+        "properties": {
+          "titl": {
+            "type": "string",
+            "xml": {
+              "name": "Titl"
+            }
+          },
+          "nm": {
+            "type": "string",
+            "xml": {
+              "name": "Nm"
+            }
+          }
+        }
+      },
+      "TaxInformation7": {
+        "type": "object",
+        "properties": {
+          "cdtr": {
+            "$ref": "#/components/schemas/TaxParty1"
+          },
+          "dbtr": {
+            "$ref": "#/components/schemas/TaxParty2"
+          },
+          "ultmtDbtr": {
+            "$ref": "#/components/schemas/TaxParty2"
+          },
+          "admstnZone": {
+            "type": "string",
+            "xml": {
+              "name": "AdmstnZone"
+            }
+          },
+          "refNb": {
+            "type": "string",
+            "xml": {
+              "name": "RefNb"
+            }
+          },
+          "mtd": {
+            "type": "string",
+            "xml": {
+              "name": "Mtd"
+            }
+          },
+          "ttlTaxblBaseAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "ttlTaxAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "dt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "Dt"
+            }
+          },
+          "seqNb": {
+            "type": "number",
+            "xml": {
+              "name": "SeqNb"
+            }
+          },
+          "rcrd": {
+            "type": "array",
+            "xml": {
+              "name": "Rcrd"
+            },
+            "items": {
+              "$ref": "#/components/schemas/TaxRecord2"
+            }
+          }
+        }
+      },
+      "TaxInformation8": {
+        "type": "object",
+        "properties": {
+          "cdtr": {
+            "$ref": "#/components/schemas/TaxParty1"
+          },
+          "dbtr": {
+            "$ref": "#/components/schemas/TaxParty2"
+          },
+          "admstnZone": {
+            "type": "string",
+            "xml": {
+              "name": "AdmstnZone"
+            }
+          },
+          "refNb": {
+            "type": "string",
+            "xml": {
+              "name": "RefNb"
+            }
+          },
+          "mtd": {
+            "type": "string",
+            "xml": {
+              "name": "Mtd"
+            }
+          },
+          "ttlTaxblBaseAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "ttlTaxAmt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          },
+          "dt": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "Dt"
+            }
+          },
+          "seqNb": {
+            "type": "number",
+            "xml": {
+              "name": "SeqNb"
+            }
+          },
+          "rcrd": {
+            "type": "array",
+            "xml": {
+              "name": "Rcrd"
+            },
+            "items": {
+              "$ref": "#/components/schemas/TaxRecord2"
+            }
+          }
+        }
+      },
+      "TaxParty1": {
+        "type": "object",
+        "properties": {
+          "taxId": {
+            "type": "string",
+            "xml": {
+              "name": "TaxId"
+            }
+          },
+          "regnId": {
+            "type": "string",
+            "xml": {
+              "name": "RegnId"
+            }
+          },
+          "taxTp": {
+            "type": "string",
+            "xml": {
+              "name": "TaxTp"
+            }
+          }
+        }
+      },
+      "TaxParty2": {
+        "type": "object",
+        "properties": {
+          "taxId": {
+            "type": "string",
+            "xml": {
+              "name": "TaxId"
+            }
+          },
+          "regnId": {
+            "type": "string",
+            "xml": {
+              "name": "RegnId"
+            }
+          },
+          "taxTp": {
+            "type": "string",
+            "xml": {
+              "name": "TaxTp"
+            }
+          },
+          "authstn": {
+            "$ref": "#/components/schemas/TaxAuthorisation1"
+          }
+        }
+      },
+      "TaxPeriod2": {
+        "type": "object",
+        "properties": {
+          "yr": {
+            "type": "string",
+            "format": "date-time",
+            "xml": {
+              "name": "Yr"
+            }
+          },
+          "tp": {
+            "type": "string",
+            "xml": {
+              "name": "Tp"
+            },
+            "enum": [
+              "MM_01",
+              "MM_02",
+              "MM_03",
+              "MM_04",
+              "MM_05",
+              "MM_06",
+              "MM_07",
+              "MM_08",
+              "MM_09",
+              "MM_10",
+              "MM_11",
+              "MM_12",
+              "QTR_1",
+              "QTR_2",
+              "QTR_3",
+              "QTR_4",
+              "HLF_1",
+              "HLF_2"
+            ]
+          },
+          "frToDt": {
+            "$ref": "#/components/schemas/DatePeriod2"
+          }
+        }
+      },
+      "TaxRecord2": {
+        "type": "object",
+        "properties": {
+          "tp": {
+            "type": "string",
+            "xml": {
+              "name": "Tp"
+            }
+          },
+          "ctgy": {
+            "type": "string",
+            "xml": {
+              "name": "Ctgy"
+            }
+          },
+          "ctgyDtls": {
+            "type": "string",
+            "xml": {
+              "name": "CtgyDtls"
+            }
+          },
+          "dbtrSts": {
+            "type": "string",
+            "xml": {
+              "name": "DbtrSts"
+            }
+          },
+          "certId": {
+            "type": "string",
+            "xml": {
+              "name": "CertId"
+            }
+          },
+          "frmsCd": {
+            "type": "string",
+            "xml": {
+              "name": "FrmsCd"
+            }
+          },
+          "prd": {
+            "$ref": "#/components/schemas/TaxPeriod2"
+          },
+          "taxAmt": {
+            "$ref": "#/components/schemas/TaxAmount2"
+          },
+          "addtlInf": {
+            "type": "string",
+            "xml": {
+              "name": "AddtlInf"
+            }
+          }
+        }
+      },
+      "TaxRecordDetails2": {
+        "required": [
+          "amt"
+        ],
+        "type": "object",
+        "properties": {
+          "prd": {
+            "$ref": "#/components/schemas/TaxPeriod2"
+          },
+          "amt": {
+            "$ref": "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          }
+        }
+      },
+      "EndPolicy": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "END_DATE",
+              "ON_OCCURRENCE",
+              "NEVER"
+            ]
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "occurrence": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "description": "Defines how much times the order will be executed before deactivated"
+      },
+      "FrequencyPolicy": {
+        "required": [
+          "frequency",
+          "period"
+        ],
+        "type": "object",
+        "properties": {
+          "frequency": {
+            "type": "string",
+            "description": "Unit of time which should be used as a base for calculating frequency policy: DAY, WEEK, MONTH, YEAR",
+            "enum": [
+              "DAILY",
+              "WEEKLY",
+              "MONTHLY",
+              "YEARLY"
+            ]
+          },
+          "period": {
+            "type": "integer",
+            "description": "The period is the duration of unit in one cycle in a repeating event i.e. period = 2 means that event will be triggered every 2 base frequency units, e.g. every 2 weeks.",
+            "format": "int32"
+          }
+        },
+        "description": "Defines frequency of the order."
+      },
+      "OrderRequest": {
+        "required": [
+          "endPolicy",
+          "frequencyPolicy",
+          "paymentData",
+          "startDate"
+        ],
+        "type": "object",
+        "properties": {
+          "paymentData": {
+            "$ref": "#/components/schemas/PaymentData"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Defines the start date of the order. It is also the date of the first order execution. In the deferred transfer when the date was in the past then the transfer will be realized immediately. When the standing order has a start date in the past, will be rejected.",
+            "format": "date"
+          },
+          "endPolicy": {
+            "$ref": "#/components/schemas/EndPolicy"
+          },
+          "frequencyPolicy": {
+            "$ref": "#/components/schemas/FrequencyPolicy"
+          },
+          "requestMetadata": {
+            "$ref": "#/components/schemas/RequestMetadata"
+          }
+        },
+        "example": {
+          "paymentData": {
+            "senderAccountNumber": "sender_iban",
+            "recipient": {
+              "accountNumber": "recipient_iban"
+            },
+            "amount": {
+              "amount": 1,
+              "currency": "EUR"
+            },
+            "title": "Never-ending story"
+          },
+          "startDate": "2121-01-01",
+          "frequencyPolicy": {
+            "frequency": "MONTHLY",
+            "period": 1
+          },
+          "endPolicy": {
+            "type": "NEVER"
+          }
+        }
+      },
+      "PaymentData": {
+        "required": [
+          "amount",
+          "recipient",
+          "senderAccountNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "senderAccountNumber": {
+            "type": "string",
+            "description": "Customer/sender account number to be debited/charged."
+          },
+          "recipient": {
+            "$ref": "#/components/schemas/Recipient"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/Value"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title to be used in booking system or settlement. If not given it will be set to: 'Money Transfer'."
+          },
+          "endToEndId": {
+            "type": "string",
+            "description": "Identification passed on, unchanged, throughout the entire end-to-end chain, including target bank/financial institution."
+          },
+          "fxRateId": {
+            "type": "string",
+            "description": "FX rate id, used for fx calculation for fx payments. If fx rate id is not provided, but conversion is needed, latest available fx rate will be used."
+          },
+          "priority": {
+            "type": "string",
+            "description": "Priority of payment used for transfer routing calculations.",
+            "enum": [
+              "NORMAL",
+              "INSTANT"
+            ]
+          },
+          "forcedPaymentSchema": {
+            "type": "string",
+            "description": "Use this field only if payment must go trough specific schema. If target bank does not support specific schema, payment is rejected before booking. If this field is used, field 'priority' has no effect.",
+            "enum": [
+              "SCT",
+              "SCT_INST",
+              "SWIFT",
+              "ELIXIR"
+            ]
+          },
+          "purposeCode": {
+            "type": "string",
+            "description": "Used to provide the bank with certain information about the type of payments. Can be used to distinguish between salary payments and capital formation savings payments, for example."
+          }
+        },
+        "description": "Payment data required for processing order."
+      },
+      "SearchCriteria": {
+        "required": [
+          "accountNumber",
+          "limit"
+        ],
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "accountNumber": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "CREDIT",
+              "DEBIT"
+            ]
+          },
+          "cursor": {
+            "type": "string"
+          },
+          "lastTransactionDateTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "referenceId": {
+            "type": "string"
+          },
+          "cursor": {
+            "type": "string"
+          },
+          "dateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/Value"
+          },
+          "balanceAfter": {
+            "$ref": "#/components/schemas/Value"
+          }
+        }
+      },
+      "TransactionHistoryResponse": {
+        "type": "object",
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "IbanStructure": {
+        "required": [
+          "countryCode",
+          "ibanLength",
+          "ibanPattern"
+        ],
+        "type": "object",
+        "properties": {
+          "ibanLength": {
+            "type": "integer",
+            "description": "The length of the account number in IBAN format",
+            "format": "int32"
+          },
+          "ibanPattern": {
+            "type": "string",
+            "description": "The pattern of the account number in IBAN format"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "The country code"
+          }
+        },
+        "description": "List of iban structures"
+      },
+      "IbanStructures": {
+        "required": [
+          "ibanStructures"
+        ],
+        "type": "object",
+        "properties": {
+          "ibanStructures": {
+            "type": "array",
+            "description": "List of iban structures",
+            "items": {
+              "$ref": "#/components/schemas/IbanStructure"
+            }
+          }
+        }
+      },
+      "AccountInformation": {
+        "required": [
+          "balance",
+          "iban"
+        ],
+        "type": "object",
+        "properties": {
+          "iban": {
+            "type": "string",
+            "description": "Account number in IBAN format"
+          },
+          "balance": {
+            "$ref": "#/components/schemas/Amount"
+          }
+        },
+        "description": "List of accounts for selected customer"
+      },
+      "Accounts": {
+        "required": [
+          "accounts"
+        ],
+        "type": "object",
+        "properties": {
+          "accounts": {
+            "type": "array",
+            "description": "List of accounts for selected customer",
+            "items": {
+              "$ref": "#/components/schemas/AccountInformation"
+            }
+          }
+        }
+      },
+      "Amount": {
+        "required": [
+          "amount",
+          "currency"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "Balance amount of account"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Account currency"
+          }
+        },
+        "description": "Information about balance on the account"
+      },
+      "ErrorResponseWrapperListRecipientDTO": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecipientDTO"
+            }
+          }
+        }
+      },
+      "RecipientDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "accounts": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/AccountNumberRef"
+                },
+                {
+                  "$ref": "#/components/schemas/IbanRef"
+                }
+              ]
+            }
+          },
+          "address": {
+            "$ref": "#/components/schemas/FullAddress"
+          }
+        }
+      },
+      "ErrorResponseWrapperRecipientDTO": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/RecipientDTO"
+          }
+        }
+      },
+      "ErrorResponseWrapperOrders": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/Orders"
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "amountTransaction": {
+            "$ref": "#/components/schemas/Amount"
+          },
+          "senderAccountNumber": {
+            "type": "string"
+          },
+          "recipientAccountNumber": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "frequency": {
+            "$ref": "#/components/schemas/FrequencyPolicy"
+          },
+          "endPolicy": {
+            "$ref": "#/components/schemas/EndPolicy"
+          },
+          "recipientAddress": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recipientBank": {
+            "$ref": "#/components/schemas/RecipientBank"
+          }
+        }
+      },
+      "Orders": {
+        "type": "object",
+        "properties": {
+          "deferredTransfers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Order"
+            }
+          },
+          "standingOrders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Order"
+            }
+          }
+        }
+      },
+      "RecipientBank": {
+        "type": "object",
+        "properties": {
+          "swiftBicCode": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "name": "bearerAuth",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
